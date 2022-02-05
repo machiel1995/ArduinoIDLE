@@ -1,0 +1,12 @@
+bluetooth controlled car:
+
+components and supplies needed: 
+arduino uno
+HC 05 bluetooth module
+sparkfun dual H-bridge motor drivers L298 
+pimoroni maker essentials micro motorw and grippy wheels
+jumper wires(generic)
+Li on battery 1000mAh
+LED(generic)
+
+arduino bluetooth rc car

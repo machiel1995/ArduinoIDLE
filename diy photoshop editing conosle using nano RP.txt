@@ -1,0 +1,104 @@
+COMPONENTS AND SUPPLIES
+arduino ide
+arduino web editor
+arduino IoT cloud
+
+arduino nano RP20240 connect x 1
+C&K switches PTS 645 series switch x 1
+rotary potentiometer(generic) x 1
+
+
+codes: 
+#include <PluggableUSBHID.h>
+#include <USBKeyboard.h>
+
+const int buttonPin1 = 2; 
+const int buttonPin2 = 3; 
+const int buttonPin3 = 4; 
+const int buttonPin4 = 5;  
+const int ledPin =  13;
+
+USBKeyboard Keyboard;
+
+int button1State = 0;
+int button2State = 0;
+int button3State = 0;
+int button4State = 0;
+int pot1 = 0;
+int pot2 = 0;   
+
+void setup() {
+
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin1, INPUT);
+  pinMode(buttonPin2, INPUT);
+  pinMode(buttonPin3, INPUT);
+  pinMode(buttonPin4, INPUT);
+  pinMode(A0, INPUT);
+  pinMode(A1, INPUT);
+        
+  Serial.begin(9600);
+}
+
+void loop() {
+  button1State = digitalRead(buttonPin1);
+  button2State = digitalRead(buttonPin2);
+  button3State = digitalRead(buttonPin3);
+  button4State = digitalRead(buttonPin4);
+  pot1 = analogRead(A0);
+  pot2 = analogRead(A1);
+
+if (button1State == HIGH) {
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Button 1 Pressed");
+    Keyboard.key_code('t', KEY_CTRL); //Resize
+    delay(500);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+
+if (button2State == HIGH) {
+    digitalWrite(ledPin, HIGH);
+    delay(500);
+    Serial.println("Button 2 Pressed");
+    Keyboard.key_code('u', KEY_CTRL); //Press CTRL, u
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+
+if (button3State == HIGH) {
+    digitalWrite(ledPin, HIGH);
+    delay(500);
+    Serial.println("Button 3 Pressed");
+    Keyboard.key_code('j', KEY_CTRL); //Press J
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+
+if (button4State == HIGH) {
+    digitalWrite(ledPin, HIGH);
+    Keyboard.key_code('v'); //Press V
+    delay(500);
+    Serial.println("Button 4 Pressed");
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+
+
+
+if ((pot1>=750)&&(pot1<=400))
+{
+  Serial.println("Pot 1 Min"); // No Change
+}
+else if (pot1>750)
+{
+  Keyboard.key_code('-', KEY_CTRL); //Zoom Out
+  delay(500);
+}
+else if (pot1<=400)
+{
+  Keyboard.key_code('+', KEY_CTRL); //Zoom In
+  delay(500);
+}
+
+}

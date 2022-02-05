@@ -1,0 +1,10 @@
+Shutter speed tester for film cameras @MIT
+
+components and supplies:
+arduino macro
+0.96 OLED Display 128x64 SSD1306 12C
+phototransistor NJL7502L
+Resistor 10K Ohm
+flashlight
+
+Arduino IDE
